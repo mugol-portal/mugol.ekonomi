@@ -37,125 +37,55 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow-x: hidden; /* Yatay taşmaları engeller */
+            overflow-x: hidden;
         }
 
-        /* Ambient Background Glow */
         body::before, body::after {
-            content: '';
-            position: fixed;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            filter: blur(120px);
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0.4;
+            content: ''; position: fixed; width: 600px; height: 600px; border-radius: 50%;
+            filter: blur(120px); z-index: 0; pointer-events: none; opacity: 0.4;
         }
         body::before { top: -200px; left: -200px; background: radial-gradient(circle, var(--glow-blue) 0%, transparent 70%); }
         body::after { bottom: -200px; right: -200px; background: radial-gradient(circle, var(--glow-gold) 0%, transparent 70%); }
 
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 20px;
-            width: 100%;
-            position: relative;
-            z-index: 1;
-        }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; width: 100%; position: relative; z-index: 1; }
 
-        /* Header */
         header {
-            padding: 20px 0;
-            background: rgba(9, 9, 11, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            padding: 20px 0; background: rgba(9, 9, 11, 0.85); backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100;
         }
 
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            max-width: 100%;
-        }
+        .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
+        .logo-section { display: flex; align-items: center; gap: 12px; max-width: 100%; }
 
         .logo-image {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            object-fit: contain;
-            background: var(--bg-surface);
-            padding: 4px;
-            border: 1px solid var(--border);
-            flex-shrink: 0; /* Logonun ezilmesini önler */
-        }
-
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-            min-width: 0; /* Uzun metinlerde taşmayı önler */
-        }
-
-        .logo-title {
-            font-size: clamp(1.2rem, 4vw, 1.5rem); /* Dinamik font boyutu */
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            background: linear-gradient(to right, #fff, #a1a1aa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .logo-subtitle {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .status-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap; /* Mobilde alt satıra geçmesine izin ver */
-        }
-
-        .status-badge {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 12px;
-            background: var(--bg-surface);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            white-space: nowrap;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--text-secondary);
+            width: 44px; height: 44px; border-radius: 12px; object-fit: contain;
+            background: var(--bg-surface); padding: 4px; border: 1px solid var(--border); flex-shrink: 0;
         }
         
+        /* Logo yüklenemezse çıkacak MG tasarımı */
+        .logo-fallback {
+            display: flex; align-items: center; justify-content: center;
+            width: 44px; height: 44px; border-radius: 12px;
+            background: var(--bg-surface); border: 1px solid var(--border);
+            color: var(--text-primary); font-weight: 800; font-size: 1.2rem; flex-shrink: 0;
+        }
+
+        .logo-text { display: flex; flex-direction: column; min-width: 0; }
+        .logo-title {
+            font-size: clamp(1.2rem, 4vw, 1.5rem); font-weight: 800; letter-spacing: -0.5px;
+            background: linear-gradient(to right, #fff, #a1a1aa); -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .logo-subtitle { font-size: 0.75rem; color: var(--text-secondary); font-weight: 500; letter-spacing: 1px; text-transform: uppercase; }
+
+        .status-container { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .status-badge {
+            display: flex; align-items: center; gap: 8px; padding: 6px 12px;
+            background: var(--bg-surface); border: 1px solid var(--border); border-radius: 20px;
+            font-size: 0.8rem; font-weight: 600; white-space: nowrap;
+        }
+
+        .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--text-secondary); }
         .status-dot.connected { background: var(--accent-green); box-shadow: 0 0 10px var(--accent-green); animation: pulse-green 2s infinite; }
         .status-dot.error { background: var(--accent-red); box-shadow: 0 0 10px var(--accent-red); }
 
@@ -165,275 +95,116 @@
             100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
         }
 
-        .time-info {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            white-space: nowrap;
-        }
+        .time-info { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-secondary); white-space: nowrap; }
 
-        /* Navigation */
         .nav-buttons {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            padding-bottom: 6px;
-            scrollbar-width: none;
-            -webkit-overflow-scrolling: touch; /* Mobilde yumuşak kaydırma */
+            display: flex; gap: 10px; overflow-x: auto; padding-bottom: 6px;
+            scrollbar-width: none; -webkit-overflow-scrolling: touch;
         }
-        
         .nav-buttons::-webkit-scrollbar { display: none; }
-
         .nav-btn {
-            padding: 8px 16px;
-            background: transparent;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            color: var(--text-secondary);
-            font-family: 'Outfit', sans-serif;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            white-space: nowrap;
-            flex-shrink: 0; /* Butonların ezilmesini engeller */
+            padding: 8px 16px; background: transparent; border: 1px solid var(--border); border-radius: 12px;
+            color: var(--text-secondary); font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 0.9rem;
+            cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 6px; white-space: nowrap; flex-shrink: 0;
         }
-
         .nav-btn:hover { background: var(--bg-surface); color: var(--text-primary); }
         .nav-btn.active { background: var(--text-primary); color: var(--bg-base); border-color: var(--text-primary); }
 
-        /* Main Content */
         main { flex: 1; padding: 32px 0; }
         .tab-content { display: none; animation: fadeIn 0.4s ease-out; }
         .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
+        .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
         .section-title { font-size: clamp(1.4rem, 4vw, 1.75rem); font-weight: 700; display: flex; align-items: center; gap: 10px; }
 
-        /* Grids - Taşmaları önlemek için minmax değerleri optimize edildi */
         .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
         .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
 
-        /* Cards */
         .card {
-            background: var(--bg-surface);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 20px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            overflow: hidden; /* Kart dışına taşmayı engeller */
+            background: var(--bg-surface); border: 1px solid var(--border); border-radius: 20px; padding: 20px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; cursor: pointer;
+            display: flex; flex-direction: column; justify-content: space-between; overflow: hidden;
         }
-
-        .card:hover {
-            background: var(--bg-surface-hover);
-            transform: translateY(-4px);
-            border-color: rgba(255,255,255,0.1);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.4);
-        }
+        .card:hover { background: var(--bg-surface-hover); transform: translateY(-4px); border-color: rgba(255,255,255,0.1); box-shadow: 0 12px 24px rgba(0,0,0,0.4); }
 
         .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
         .card-title { font-size: 1rem; font-weight: 600; color: var(--text-secondary); display: flex; align-items: center; gap: 8px; }
 
         .card-value {
-            font-size: clamp(1.6rem, 5vw, 2.2rem); /* Çok uzun sayılarda fontu otomatik küçültür */
-            font-weight: 700;
-            font-family: 'JetBrains Mono', monospace;
-            line-height: 1.2;
-            margin-bottom: 8px;
-            letter-spacing: -1px;
-            word-wrap: break-word; /* Sayı taşarsa alt satıra atar */
-            overflow-wrap: break-word;
+            font-size: clamp(1.6rem, 5vw, 2.2rem); font-weight: 700; font-family: 'JetBrains Mono', monospace;
+            line-height: 1.2; margin-bottom: 8px; letter-spacing: -1px; word-wrap: break-word; overflow-wrap: break-word;
         }
 
         .card-change {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            font-weight: 600;
-            padding: 4px 8px;
-            border-radius: 8px;
-            background: rgba(255,255,255,0.03);
-            width: fit-content;
+            display: inline-flex; align-items: center; gap: 4px; font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem; font-weight: 600; padding: 4px 8px; border-radius: 8px; background: rgba(255,255,255,0.03); width: fit-content;
         }
-
         .card-change.positive { color: var(--accent-green); background: rgba(16, 185, 129, 0.1); }
         .card-change.negative { color: var(--accent-red); background: rgba(239, 68, 68, 0.1); }
 
-        /* Skeleton Loading Effect */
         .skeleton {
             background: linear-gradient(90deg, var(--bg-surface-hover) 25%, #3f3f46 50%, var(--bg-surface-hover) 75%);
-            background-size: 200% 100%;
-            animation: skeleton-loading 1.5s infinite;
-            border-radius: 8px;
-            color: transparent !important;
-            user-select: none;
-            width: fit-content;
-            min-width: 80px;
+            background-size: 200% 100%; animation: skeleton-loading 1.5s infinite; border-radius: 8px;
+            color: transparent !important; user-select: none; width: fit-content; min-width: 80px;
         }
-        
         @keyframes skeleton-loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
-        /* Inputs & Buttons */
         .input-group { margin-bottom: 16px; }
         .input-group label { display: block; font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 6px; font-weight: 500; }
         
         .custom-input, .custom-select {
-            width: 100%;
-            padding: 12px 16px;
-            background: var(--bg-base);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            color: var(--text-primary);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 16px; /* 16px yapıldı, mobilde otomatik zoom'u engeller! */
-            transition: border-color 0.2s ease;
+            width: 100%; padding: 12px 16px; background: var(--bg-base); border: 1px solid var(--border);
+            border-radius: 12px; color: var(--text-primary); font-family: 'JetBrains Mono', monospace; font-size: 16px; transition: border-color 0.2s ease;
         }
         .custom-input:focus, .custom-select:focus { outline: none; border-color: var(--accent-blue); }
         
         .btn-primary {
-            width: 100%;
-            padding: 14px;
-            background: var(--text-primary);
-            color: var(--bg-base);
-            border: none;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 1rem;
-            font-family: 'Outfit', sans-serif;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            margin-top: 10px;
+            width: 100%; padding: 14px; background: var(--text-primary); color: var(--bg-base); border: none;
+            border-radius: 12px; font-weight: 700; font-size: 1rem; font-family: 'Outfit', sans-serif; cursor: pointer; transition: all 0.2s ease; margin-top: 10px;
         }
         .btn-primary:hover { transform: scale(0.98); opacity: 0.9; }
 
-        /* Results Box */
-        .result-box {
-            margin-top: 20px;
-            padding: 16px;
-            background: var(--bg-base);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            display: none;
-        }
+        .result-box { margin-top: 20px; padding: 16px; background: var(--bg-base); border: 1px solid var(--border); border-radius: 16px; display: none; }
         .result-box.show { display: block; animation: fadeIn 0.3s; }
-        
-        .result-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px dashed var(--border);
-            gap: 10px; /* Label ve değer birbirine girmesin */
-        }
-        .result-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-            margin-top: 8px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--accent-green);
-        }
+        .result-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed var(--border); gap: 10px; }
+        .result-item:last-child { border-bottom: none; padding-bottom: 0; margin-top: 8px; font-size: 1.2rem; font-weight: 700; color: var(--accent-green); }
         .result-label { color: var(--text-secondary); font-size: 0.9rem; flex-shrink: 0; }
         .result-value { font-family: 'JetBrains Mono', monospace; font-weight: 600; text-align: right; word-break: break-word; }
 
-        /* Modal */
         .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(8px);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-            padding: 16px; /* Kenarlara yapışmayı önler */
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(8px); z-index: 1000; align-items: center; justify-content: center; padding: 16px;
         }
         .modal.show { display: flex; animation: fadeIn 0.2s; }
-        .modal-content {
-            background: var(--bg-surface);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 24px;
-            width: 100%;
-            max-width: 400px; /* Çok genişlemeyi engeller */
-            box-shadow: 0 24px 48px rgba(0,0,0,0.5);
-            max-height: 90vh;
-            overflow-y: auto;
-        }
+        .modal-content { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 24px; padding: 24px; width: 100%; max-width: 400px; box-shadow: 0 24px 48px rgba(0,0,0,0.5); max-height: 90vh; overflow-y: auto; }
         .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap:10px; }
         .modal-title { font-size: 1.25rem; font-weight: 700; word-break: break-word; line-height: 1.3; }
         .modal-close {
             background: var(--bg-base); border: 1px solid var(--border); color: var(--text-primary);
-            width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 1.2rem;
-            display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0;
+            width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0;
         }
         .modal-close:hover { background: var(--accent-red); border-color: var(--accent-red); color: white; }
 
-        /* Support Section */
-        .support-card {
-            background: linear-gradient(145deg, var(--bg-surface), var(--bg-base));
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 32px 24px;
-            text-align: center;
-        }
+        .support-card { background: linear-gradient(145deg, var(--bg-surface), var(--bg-base)); border: 1px solid var(--border); border-radius: 24px; padding: 32px 24px; text-align: center; }
         .support-icon { font-size: 3rem; margin-bottom: 16px; }
         .support-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; }
         .support-text { color: var(--text-secondary); margin-bottom: 24px; font-size: 0.95rem; }
         .support-email {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 14px 24px;
-            background: var(--bg-surface-hover);
-            border-radius: 16px;
-            color: var(--text-primary);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            font-family: 'JetBrains Mono', monospace;
-            transition: all 0.2s;
-            word-break: break-all; /* Uzun maillerin taşmasını engeller */
+            display: inline-flex; align-items: center; gap: 8px; padding: 14px 24px; background: var(--bg-surface-hover);
+            border-radius: 16px; color: var(--text-primary); text-decoration: none; font-weight: 600; font-size: 0.9rem; font-family: 'JetBrains Mono', monospace; transition: all 0.2s; word-break: break-all;
         }
         .support-email:hover { background: var(--text-primary); color: var(--bg-base); }
 
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 24px 0;
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            background: var(--bg-base);
-        }
+        footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: center; color: var(--text-secondary); font-size: 0.85rem; background: var(--bg-base); }
 
         @media (max-width: 768px) {
             .header-top { flex-direction: column; align-items: flex-start; gap: 16px; }
             .status-container { width: 100%; justify-content: space-between; }
             .section-header { flex-direction: column; align-items: flex-start; }
             .card { padding: 16px; }
-            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; } /* Mobilde her şey tek kolon */
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -442,7 +213,8 @@
         <div class="container">
             <div class="header-top">
                 <div class="logo-section">
-                    <img src="Logo.png" alt="MuGöl Ekonomi" class="logo-image" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzI3MjcyYSIvPjx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjQwIiBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5NRzwvdGV4dD48L3N2Zz4='">
+                    <!-- Akıllı Logo Arama Sistemi: Küçük/büyük harf veya .jpg hatalarını tolere eder -->
+                    <img src="Logo.png" alt="MuGöl Ekonomi" class="logo-image" id="app-logo" onerror="handleLogoError(this)">
                     <div class="logo-text">
                         <div class="logo-title">MuGöl Ekonomi</div>
                         <div class="logo-subtitle">Finans Portalı</div>
@@ -518,9 +290,7 @@
             <!-- Hesaplamalar Tab -->
             <div class="tab-content" id="calc-tab">
                 <div class="section-header"><h2 class="section-title">Hesaplama Araçları</h2></div>
-                <!-- Kartların simetrik durması için grid-2 kullanıyoruz -->
                 <div class="grid-2">
-                    
                     <!-- Döviz Çevirici -->
                     <div class="card" style="cursor: default;">
                         <div class="card-header"><div class="card-title">💱 Döviz Çevirici</div></div>
@@ -557,7 +327,7 @@
                         </div>
                     </div>
 
-                    <!-- Maaş Zam Hesaplama (Geri Eklendi) -->
+                    <!-- Maaş Zam Hesaplama -->
                     <div class="card" style="cursor: default;">
                         <div class="card-header"><div class="card-title">📈 Maaş Zam Hesaplama</div></div>
                         <div class="input-group"><label>Mevcut Maaş (₺)</label><input type="number" class="custom-input" id="mevcut-maas" placeholder="Örn: 30000"></div>
@@ -580,7 +350,6 @@
                             <div class="result-item"><span class="result-label">KALAN (NET)</span><span class="result-value" id="kalan-val">-</span></div>
                         </div>
                     </div>
-
                 </div>
             </div>
 
@@ -643,29 +412,40 @@
     </footer>
 
     <script>
-        // API Configuration (Güvenilir Key'siz Kaynak)
-        const API_URL = 'https://finans.truncgil.com/v4/today.json';
-        const REFRESH_RATE = 30000; // 30 Saniye
-        let currentPrices = {};
-        
-        // Akıllı Veri Eşleştirme (Smart Key Mapping) 
-        // API üzerinde isimler değişirse çökmemesi için alternatif anahtarlar eklendi.
+        // --- 1. AKILLI LOGO KURTARICISI ---
+        // Eğer Logo.png bulunamazsa, küçük harfli logo.png, Logo.jpg gibi diğer senaryoları dener.
+        function handleLogoError(img) {
+            const attempts = parseInt(img.dataset.retry || '0');
+            const fallbacks =['logo.png', 'Logo.jpg', 'logo.jpg', 'Logo.jpeg'];
+            
+            if (attempts < fallbacks.length) {
+                img.dataset.retry = attempts + 1;
+                img.src = fallbacks[attempts];
+            } else {
+                // Hiçbiri yoksa şık MG tasarımını oluşturur (Ekran görüntünüzdeki gibi)
+                img.outerHTML = `<div class="logo-fallback">MG</div>`;
+            }
+        }
+
+        // --- 2. GÜÇLENDİRİLMİŞ VERİ EŞLEŞTİRİCİ ---
         const dataMap = {
             'usd': { keys:['USD', 'usd', 'dolar'], prefix: '₺' },
             'eur': { keys:['EUR', 'eur', 'euro'], prefix: '₺' },
             'gbp': { keys:['GBP', 'gbp', 'sterlin'], prefix: '₺' },
-            'chf': { keys: ['CHF', 'chf'], prefix: '₺' },
+            'chf': { keys:['CHF', 'chf'], prefix: '₺' },
             'cad': { keys:['CAD', 'cad'], prefix: '₺' },
             'aud': { keys:['AUD', 'aud'], prefix: '₺' },
-            'sar': { keys: ['SAR', 'sar'], prefix: '₺' },
-            'kwd': { keys: ['KWD', 'kwd'], prefix: '₺' },
-            'gumus': { keys:['GÜMÜŞ', 'GUMUS', 'gumus', 'Gümüş'], prefix: '₺' },
-            'gram-altin': { keys:['GRAM ALTIN', 'gram-altin', 'GRA'], prefix: '₺' },
-            'ceyrek-altin': { keys:['ÇEYREK ALTIN', 'ceyrek-altin', 'CEYREKALTIN'], prefix: '₺' },
+            'sar': { keys:['SAR', 'sar'], prefix: '₺' },
+            'kwd': { keys:['KWD', 'kwd'], prefix: '₺' },
+            'gumus': { keys:['GÜMÜŞ', 'GUMUS', 'gumus', 'Gümüş', 'G'], prefix: '₺' },
+            'gram-altin': { keys:['GRAM ALTIN', 'gram-altin', 'GRA', 'GA'], prefix: '₺' },
+            'ceyrek-altin': { keys:['ÇEYREK ALTIN', 'ceyrek-altin', 'CEYREKALTIN', 'C'], prefix: '₺' },
             'ons-altin': { keys:['ONS', 'ons', 'ons-altin'], prefix: '$' }
         };
 
-        // UI Tabs
+        let currentPrices = {};
+
+        // Sekme Değiştirme
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
@@ -673,7 +453,7 @@
             event.currentTarget.classList.add('active');
         }
 
-        // Status Indicator
+        // Durum Göstergesi
         function setConnectionStatus(status) {
             const dot = document.querySelector('.status-dot');
             const text = document.getElementById('status-text');
@@ -690,7 +470,7 @@
             }
         }
 
-        // Time Updates
+        // Saat Güncellemesi
         function updateClock() {
             const now = new Date();
             const timeString = now.toLocaleDateString('tr-TR', {day:'2-digit', month:'short', year:'numeric'}) + ' ' + 
@@ -700,68 +480,109 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        // Veri Okuma ve Hata Önleme Yardımcısı
-        function findDataInAPI(apiData, possibleKeys) {
-            for (let k of possibleKeys) {
-                if (apiData[k]) return apiData[k];
-            }
-            // Büyük/Küçük harf duyarsız arama (Fall-back)
-            const lowerKeys = Object.keys(apiData).map(k => k.toLowerCase());
-            for (let k of possibleKeys) {
-                const index = lowerKeys.indexOf(k.toLowerCase());
-                if (index !== -1) return apiData[Object.keys(apiData)[index]];
-            }
-            return null;
-        }
-
         function formatVal(val) {
             const num = parseFloat(val);
             if (isNaN(num)) return "0.00";
             return num.toLocaleString('tr-TR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
         }
 
-        // Fetch Data Core
+        // --- 3. CORS ENGELİ AŞICI ve ÇOKLU API MERKEZİ ---
+        // Telefonlardaki güvenlik duvarını (CORS) delmek ve Truncgil çökerse diğer kaynaklara geçmek için.
+        async function fetchWithFallbacks() {
+            const endpoints =[
+                'https://finans.truncgil.com/today.json', // 1. Ana Kaynak
+                'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://finans.truncgil.com/today.json'), // 2. Proxy (Telefon Engeli İçin)
+                'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://api.genelpara.com/embed/para-birimleri.json') // 3. Alternatif GenelPara API
+            ];
+
+            for (let url of endpoints) {
+                try {
+                    const response = await fetch(url, { cache: "no-store" });
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data && Object.keys(data).length > 0) return data;
+                    }
+                } catch (e) {
+                    console.warn("API Hatası atlandı:", url);
+                }
+            }
+            throw new Error('Tüm veri kaynakları ulaşılamaz durumda.');
+        }
+
+        // Gelen veriyi (Truncgil veya GenelPara formatında olsa da) tek bir standarda çevirir
+        function normalizeApiData(apiData) {
+            const result = {};
+            for (let key in apiData) {
+                const item = apiData[key];
+                if (!item) continue;
+                
+                let price = 0; let change = "0";
+
+                // Truncgil Formatı ise
+                if (item.Selling || item.Buying) {
+                    price = parseFloat((item.Selling || item.Buying).toString().replace(',', '.'));
+                    change = item.Change || "0";
+                } 
+                // GenelPara Formatı ise
+                else if (item.satis || item.alis) {
+                    price = parseFloat((item.satis || item.alis).toString().replace(',', '.'));
+                    change = item.degisim || "0";
+                }
+
+                if (price > 0) result[key] = { price, change: change.toString().replace('%', '') };
+            }
+            return result;
+        }
+
+        function findDataInNormalized(data, possibleKeys) {
+            const lowerKeys = Object.keys(data).map(k => k.toLowerCase());
+            const dataKeys = Object.keys(data);
+            
+            for (let k of possibleKeys) {
+                if (data[k]) return data[k];
+                const idx = lowerKeys.indexOf(k.toLowerCase());
+                if (idx !== -1) return data[dataKeys[idx]];
+            }
+            return null;
+        }
+
+        // Ana Veri Çekme Döngüsü
         async function fetchMarketData() {
             try {
-                const response = await fetch(API_URL);
-                if (!response.ok) throw new Error('API yanıt vermedi');
-                const data = await response.json();
+                const rawData = await fetchWithFallbacks();
+                const normalizedData = normalizeApiData(rawData);
                 
                 setConnectionStatus('connected');
                 const updateTimeText = new Date().toLocaleTimeString('tr-TR', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
                 document.getElementById('metals-time').textContent = updateTimeText;
                 document.getElementById('forex-time').textContent = updateTimeText;
 
-                // Dinamik eşleştirme ile kartları güncelle
                 Object.keys(dataMap).forEach(id => {
                     const conf = dataMap[id];
-                    const itemData = findDataInAPI(data, conf.keys);
+                    const item = findDataInNormalized(normalizedData, conf.keys);
                     
-                    if (itemData) {
-                        const price = parseFloat(itemData.Selling || itemData.Buying || 0);
-                        const change = itemData.Change || "0.00";
-                        if(price > 0) updateCardUI(id, price, change, conf.prefix);
+                    if (item) {
+                        updateCardUI(id, item.price, item.change, conf.prefix);
                     }
                 });
 
-                // ONS Altın Truncgil'de genelde ONS olarak geçer ama bazen eksik kalırsa güvenli liman (fallback)
-                if(!findDataInAPI(data, dataMap['ons-altin'].keys)) {
+                // ONS Altın verisi hiçbir yerden dönmezse (Bazen API'lerden düşer)
+                if(!findDataInNormalized(normalizedData, dataMap['ons-altin'].keys)) {
                     updateCardUI('ons-altin', 2694.50, "-0.14", "$");
                 }
 
             } catch (error) {
-                console.warn('Veri çekme hatası (Yeniden denenecek):', error);
+                console.error('Bağlantı Sorunu:', error);
                 setConnectionStatus('error');
             }
         }
 
-        // Kartları Güncelle
+        // Kartları Güncelleştir
         function updateCardUI(id, price, changeStr, prefix) {
             const card = document.querySelector(`[data-id="${id}"]`);
             if (!card) return;
 
             currentPrices[id] = price; 
-
             const valEl = card.querySelector('.card-value');
             const changeEl = card.querySelector('.card-change');
             const titleText = card.querySelector('.card-title').textContent.replace(/[^a-zA-ZğüşıöçĞÜŞİÖÇ\s()]/g, '').trim();
@@ -771,7 +592,7 @@
 
             valEl.textContent = prefix + formatVal(price);
             
-            const changeNum = parseFloat(changeStr.toString().replace('%',''));
+            const changeNum = parseFloat(changeStr);
             const isPos = changeNum >= 0;
             changeEl.className = `card-change ${isPos ? 'positive' : 'negative'}`;
             changeEl.textContent = `${isPos ? '↑ +' : '↓ '}${Math.abs(changeNum).toFixed(2)}%`;
@@ -779,13 +600,11 @@
             card.onclick = () => openModal(titleText, price, prefix);
         }
 
-        // --- Modal Setup ---
-        let currentModalPrice = 0;
-        let currentModalPrefix = '';
+        // --- Modallar & Hesaplayıcılar ---
+        let currentModalPrice = 0; let currentModalPrefix = '';
 
         function openModal(title, price, prefix) {
-            currentModalPrice = price;
-            currentModalPrefix = prefix;
+            currentModalPrice = price; currentModalPrefix = prefix;
             document.getElementById('modal-title').textContent = title + " Alım";
             document.getElementById('modal-price').value = prefix + formatVal(price);
             document.getElementById('modal-amount').value = '';
@@ -794,22 +613,13 @@
             setTimeout(() => document.getElementById('modal-amount').focus(), 100);
         }
 
-        function closeModal() {
-            document.getElementById('quick-modal').classList.remove('show');
-        }
-
+        function closeModal() { document.getElementById('quick-modal').classList.remove('show'); }
         function calculateModalTotal() {
             const amount = parseFloat(document.getElementById('modal-amount').value) || 0;
-            const total = amount * currentModalPrice;
-            document.getElementById('modal-total-val').textContent = currentModalPrefix + formatVal(total);
+            document.getElementById('modal-total-val').textContent = currentModalPrefix + formatVal(amount * currentModalPrice);
         }
+        window.onclick = function(event) { if (event.target == document.getElementById('quick-modal')) closeModal(); }
 
-        window.onclick = function(event) {
-            const modal = document.getElementById('quick-modal');
-            if (event.target == modal) closeModal();
-        }
-
-        // --- Hesaplamalar ---
         function calculateDoviz() {
             const amount = parseFloat(document.getElementById('doviz-miktar').value);
             const from = document.getElementById('doviz-from').value;
@@ -817,17 +627,10 @@
 
             if (!amount || amount <= 0) return alert('Geçerli bir miktar giriniz.');
 
-            const rates = {
-                'TRY': 1,
-                'USD': currentPrices['usd'] || 35.50,
-                'EUR': currentPrices['eur'] || 38.20,
-                'GBP': currentPrices['gbp'] || 44.80
-            };
-
+            const rates = { 'TRY': 1, 'USD': currentPrices['usd'] || 35.50, 'EUR': currentPrices['eur'] || 38.20, 'GBP': currentPrices['gbp'] || 44.80 };
             const amountInTRY = from === 'TRY' ? amount : amount * rates[from];
             const finalResult = to === 'TRY' ? amountInTRY : amountInTRY / rates[to];
             const crossRate = rates[from] / rates[to];
-
             const symbols = { 'TRY':'₺', 'USD':'$', 'EUR':'€', 'GBP':'£' };
 
             document.getElementById('doviz-from-val').textContent = symbols[from] + formatVal(amount);
@@ -853,20 +656,15 @@
             document.getElementById('brut-result').classList.add('show');
         }
 
-        // Maaş Zam Hesaplama Fonksiyonu Geri Eklendi
         function calculateZam() {
             const mevcutMaas = parseFloat(document.getElementById('mevcut-maas').value);
             const zamOran = parseFloat(document.getElementById('zam-oran').value);
             
-            if (!mevcutMaas || mevcutMaas <= 0 || !zamOran || zamOran < 0) {
-                return alert('Lütfen geçerli değerler giriniz.');
-            }
+            if (!mevcutMaas || mevcutMaas <= 0 || !zamOran || zamOran < 0) return alert('Lütfen geçerli değerler giriniz.');
 
             const zamTutar = mevcutMaas * (zamOran / 100);
-            const yeniMaas = mevcutMaas + zamTutar;
-
             document.getElementById('zam-tutar-val').textContent = "₺" + formatVal(zamTutar);
-            document.getElementById('yeni-maas-val').textContent = "₺" + formatVal(yeniMaas);
+            document.getElementById('yeni-maas-val').textContent = "₺" + formatVal(mevcutMaas + zamTutar);
             document.getElementById('zam-result').classList.add('show');
         }
 
@@ -881,14 +679,13 @@
 
             document.getElementById('tasarruf-oran-val').textContent = tasarruf > 0 ? `%${tasarruf}` : '-%0';
             document.getElementById('tasarruf-oran-val').style.color = tasarruf > 0 ? 'var(--accent-green)' : 'var(--accent-red)';
-            
             document.getElementById('kalan-val').textContent = "₺" + formatVal(netKalan);
             document.getElementById('gelir-result').classList.add('show');
         }
 
-        // Sistemi Başlat
+        // Uygulamayı Başlat
         fetchMarketData();
-        setInterval(fetchMarketData, REFRESH_RATE);
+        setInterval(fetchMarketData, 30000);
 
     </script>
 </body>
