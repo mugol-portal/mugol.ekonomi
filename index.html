@@ -209,6 +209,48 @@
 
         .data-sources { text-align: center; padding: 40px 20px; border-top: 1px dashed var(--border-color); margin-top: auto; color: var(--text-muted); font-size: 13px; font-family: var(--font-mono); line-height: 2.2; background: rgba(11, 17, 33, 0.5); backdrop-filter: blur(10px); }
         .data-sources span { display: inline-block; margin: 0 8px; background: var(--receipt-bg); padding: 4px 10px; border-radius: 8px; border: 1px solid var(--border-color); color: var(--text-main); font-weight: 700;}
+
+        /* ── AdSense Reklam Kutusu ── */
+        .mg-ad-box {
+            position: relative;
+            width: 100%;
+            background: var(--bg-panel);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 32px 12px 12px;
+            margin: 24px 0;
+            overflow: visible;
+            box-sizing: border-box;
+            min-height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(16px);
+        }
+        .mg-ad-box ins.adsbygoogle {
+            display: block !important;
+            width: 300px !important;
+            height: 250px !important;
+        }
+        .mg-ad-label {
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.6rem;
+            font-weight: 800;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: var(--bg-panel);
+            padding: 2px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 1;
+            font-family: var(--font-mono);
+        }
     </style>
 </head>
 <body>
@@ -352,6 +394,16 @@
 
             <div style="margin-bottom: 20px; color:var(--text-muted); font-weight:700; font-size:15px;">Hızlı Takip (Popüler Varlıklar)</div>
             <div class="grid" id="ozet-container"></div>
+
+            <!-- ── ADSENSE REKLAM 1 — Piyasa Özeti Altı ── -->
+            <div class="mg-ad-box" aria-label="Reklam" role="complementary">
+                <span class="mg-ad-label">Reklam</span>
+                <ins class="adsbygoogle"
+                     style="display:block;width:300px;height:250px;"
+                     data-ad-client="ca-pub-1880946354382681"
+                     data-ad-slot="1689789138"
+                     data-ad-format="rectangle"></ins>
+            </div>
         </section>
 
         <section id="kuresel" class="section"><h2 class="sec-title"><i class="ph-fill ph-globe"></i> Küresel Piyasalar & Emtia <span style="font-size: 12px; font-weight: 600; color: var(--text-muted); padding: 4px 8px; background: var(--receipt-bg); border-radius: 8px; margin-left:10px;">Simülasyon</span></h2><div class="grid" id="kuresel-container"></div></section>
@@ -361,16 +413,49 @@
             <div class="grid" id="doviz-container" style="margin-bottom: 40px;"></div>
             <h3 style="margin-bottom: 20px; color:var(--text-muted); font-size:16px;">Önemli Çapraz Kurlar (Pariteler)</h3>
             <div class="grid" id="parite-container"></div>
+
+            <!-- ── ADSENSE REKLAM 2 — Döviz Kurları Altı ── -->
+            <div class="mg-ad-box" aria-label="Reklam" role="complementary">
+                <span class="mg-ad-label">Reklam</span>
+                <ins class="adsbygoogle"
+                     style="display:block;width:300px;height:250px;"
+                     data-ad-client="ca-pub-1880946354382681"
+                     data-ad-slot="1689789138"
+                     data-ad-format="rectangle"></ins>
+            </div>
         </section>
         
         <section id="maden" class="section"><h2 class="sec-title"><i class="ph-fill ph-coins"></i> Kapalıçarşı Altın & Gümüş</h2><div class="grid" id="maden-container"></div></section>
-        <section id="kripto" class="section"><h2 class="sec-title"><i class="ph-fill ph-currency-btc"></i> Kripto Paralar</h2><div class="grid" id="kripto-container"></div></section>
+        <section id="kripto" class="section">
+            <h2 class="sec-title"><i class="ph-fill ph-currency-btc"></i> Kripto Paralar</h2>
+            <div class="grid" id="kripto-container"></div>
+
+            <!-- ── ADSENSE REKLAM 3 — Kripto Paralar Altı ── -->
+            <div class="mg-ad-box" aria-label="Reklam" role="complementary">
+                <span class="mg-ad-label">Reklam</span>
+                <ins class="adsbygoogle"
+                     style="display:block;width:300px;height:250px;"
+                     data-ad-client="ca-pub-1880946354382681"
+                     data-ad-slot="1689789138"
+                     data-ad-format="rectangle"></ins>
+            </div>
+        </section>
         <section id="hisse" class="section"><h2 class="sec-title"><i class="ph-fill ph-trend-up"></i> Hisse Senetleri <span style="font-size: 12px; font-weight: 600; color: var(--text-muted); padding: 4px 8px; background: var(--receipt-bg); border-radius: 8px; margin-left:10px;">Simülasyon</span></h2><div class="grid" id="hisse-container"></div></section>
         
         <section id="haberler" class="section">
             <h2 class="sec-title"><i class="ph-fill ph-newspaper"></i> Ekonomi Haberleri</h2>
             <div id="news-container" style="display: flex; flex-direction: column; gap: 15px;">
                 <div style="text-align: center; color: var(--text-muted); padding: 20px;">Haber akışı yükleniyor...</div>
+            </div>
+
+            <!-- ── ADSENSE REKLAM 4 — Ekonomi Haberleri Altı ── -->
+            <div class="mg-ad-box" aria-label="Reklam" role="complementary">
+                <span class="mg-ad-label">Reklam</span>
+                <ins class="adsbygoogle"
+                     style="display:block;width:300px;height:250px;"
+                     data-ad-client="ca-pub-1880946354382681"
+                     data-ad-slot="1689789138"
+                     data-ad-format="rectangle"></ins>
             </div>
         </section>
 
@@ -480,6 +565,16 @@
                     <div style="font-size:14px; color:var(--text-muted); font-weight:600; margin-bottom:5px;">Toplam Seyahat Maliyeti</div>
                     <div id="yakit-sonuc" style="font-size:28px; font-weight:800; font-family:var(--font-mono); color:var(--warn-color);">0.00 ₺</div>
                 </div>
+            </div>
+
+            <!-- ── ADSENSE REKLAM 5 — Finansal Araçlar Altı ── -->
+            <div class="mg-ad-box" aria-label="Reklam" role="complementary">
+                <span class="mg-ad-label">Reklam</span>
+                <ins class="adsbygoogle"
+                     style="display:block;width:300px;height:250px;"
+                     data-ad-client="ca-pub-1880946354382681"
+                     data-ad-slot="1689789138"
+                     data-ad-format="rectangle"></ins>
             </div>
 
         </section>
@@ -942,5 +1037,29 @@
 
         window.onload = () => { initCards(); initCharts(); renderIBANs(); fetchRealNews(); fetchTurkiyePiyasasi(); setInterval(fetchTurkiyePiyasasi, 30000); setInterval(fetchRealNews, 300000); };
     </script>
+
+    <!-- ── AdSense Lazy Push ── -->
+    <script>
+    (function() {
+        function mgPushAds() {
+            document.querySelectorAll('ins.adsbygoogle').forEach(function(ins) {
+                if (!ins.getAttribute('data-adsbygoogle-status')) {
+                    try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+                }
+            });
+        }
+        // İlk yüklemede push et
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() { setTimeout(mgPushAds, 800); });
+        } else {
+            setTimeout(mgPushAds, 800);
+        }
+        // Sekme değişiminde görünür olan reklamları da push et
+        document.querySelectorAll('.nav-links a').forEach(function(link) {
+            link.addEventListener('click', function() { setTimeout(mgPushAds, 400); });
+        });
+    })();
+    </script>
+
 </body>
 </html>
